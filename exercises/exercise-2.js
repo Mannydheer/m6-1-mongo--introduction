@@ -131,35 +131,27 @@ const deleteGreeting = async (req, res) => {
 const updateGreeting = async (req, res) => {
 
     const { _id } = req.params;
-    const query = { _id };
+    const { hello } = req.body;
+
 
     const input = { ...req.body }
-    const newValues = { $set: { ...req.body } };
 
     //for checking if it doesnt include hello
     let allKeys = Object.keys(input)
-
-
-
-    console.log(query, 'THIS IS QUERy')
-
+    if (!allKeys.includes('hello')) {
+        res.status(400).json({ status: 400, message: 'Does not include hello', err })
+        return;
+    }
     const client = new MongoClient('mongodb://localhost:27017', {
         useUnifiedTopology: true,
     });
-
     try {
-
-        console.log(newValues)
-
-
         await client.connect();
         console.log('connected!');
         const db = client.db('exercise_two');
 
-        if (!allKeys.includes('hello')) {
-            res.status(400).json({ status: 400, message: 'Does not include hello', err })
-        }
-
+        const query = { _id };
+        const newValues = { $set: { hello } };
         const r = await db.collection('greetings').updateOne(query, newValues);
         assert.equal(1, r.matchedCount);
         assert.equal(1, r.modifiedCount);
