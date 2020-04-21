@@ -25,11 +25,13 @@ const createGreeting = async (req, res) => {
 5. Use Insomnia to send the following `body` to that endpoint.
 
 ```json
+
 {
   "lang": "English",
   "_id": "EN",
   "hello": "Hello"
 }
+
 ```
 
 6. Test out the endpoint connection.

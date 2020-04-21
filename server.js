@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const { getCollection } = require('./exercises/exercise-1-2');
-const { createGreeting, getGreeting, getMoreGreetings } = require('./exercises/exercise-2')
+const { createGreeting, getGreeting, getMoreGreetings, deleteGreeting, updateGreeting } = require('./exercises/exercise-2')
 const { batchImport } = require('./batchImport');
 
 
@@ -34,6 +34,10 @@ express()
   .get('/ex-2-greeting/:_id', getGreeting)
   //more greetings. 
   .get('/ex-2-more-greeting', getMoreGreetings)
+  //
+  .delete('/ex-2-greeting/:_id', deleteGreeting)
+  //
+  .put('/ex-2-greeting/:_id', updateGreeting)
 
 
 
