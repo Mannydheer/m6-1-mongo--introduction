@@ -6,6 +6,8 @@ const dbFunction = async (dbName) => {
         useUnifiedTopology: true,
     });
     // open the connection to the database server
+
+    
     await client.connect();
     console.log('connected!');
 
@@ -18,7 +20,5 @@ const dbFunction = async (dbName) => {
     client.close();
     console.log('disconnected!');
 };
-
-
 //call the  function
 dbFunction('exercise_one');
